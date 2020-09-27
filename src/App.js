@@ -1,11 +1,16 @@
 import React from "react";
+import { JumbotronContainer } from "./containers/jumbotron";
+import { FooterContainer } from './containers/footer'
+import FAQ from "./containers/faqs";
 
 function App() {
   return (
-    <div className="app">
-      <h3>Welcome to Braket TV v2</h3>
-    </div>
-  );
+    <>
+      <JumbotronContainer />
+      <FAQ />
+      <FooterContainer />
+    </>
+    );
 }
 
 export default App;
