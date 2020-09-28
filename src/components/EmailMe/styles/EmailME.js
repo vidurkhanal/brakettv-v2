@@ -4,17 +4,17 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   height: 100%;
-  margin-top: 40px;
+  margin: 40px auto 0 auto;
   flex-wrap: wrap;
   @media (max-width: 1000px) {
     flex-direction: column;
     align-items: center;
   }
-  @media (max-width:600px){
-    margin-left:auto;
-    margin-right:auto;
-    max-width:90vw;
-    width:90vw;
+  @media (max-width: 600px) {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 90vw;
+    width: 90%;
   }
 `;
 
@@ -25,10 +25,10 @@ export const Input = styled.input`
   padding: 10px;
   height: 70px;
   box-sizing: border-box;
-  font-size:20px;
-  outline:none;
-  @media (max-width:600px){
-    font-size:15px;
+  font-size: 20px;
+  outline: none;
+  @media (max-width: 600px) {
+    font-size: 15px;
   }
 `;
 

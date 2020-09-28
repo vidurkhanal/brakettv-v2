@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Input, Button, Text } from './styles/EmailME'
+import { Container, Input, Button, Text, Break } from "./styles/EmailME";
 
 function EmailMe({ children, ...restProps }) {
     return (
@@ -20,5 +20,9 @@ EmailMe.Button = function EmailMeButton({ children, ...restProps }) {
 EmailMe.Text = function EmailMeText({ children, ...restProps }) {
     return <Text {...restProps}>{children}</Text>
 }
+
+EmailMe.Break = function EmailMeBreak({ ...restProps }) {
+  return <Break {...restProps} />;
+};
 
 export default EmailMe

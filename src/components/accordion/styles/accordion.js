@@ -36,13 +36,13 @@ export const Item = styled.div`
   color: white;
   margin-bottom: 10px;
   margin: auto;
-  max-width: 670px;
+  max-width: 700px;
   width: 100%;
   &:first-of-type {
     margin-top: 3em;
   }
   @media (max-width: 600px) {
-    max-width:90vw;
+    max-width: 90vw;
   }
 `;
 
