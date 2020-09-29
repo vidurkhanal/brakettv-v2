@@ -10,8 +10,7 @@ import useAuthListener from "./hooks/useAuthListener";
 
 
 function App() {
-  let {user} = useAuthListener()
-  console.log(user)
+  let { user } = useAuthListener();
   return (
     <Router>
       <Switch>
@@ -24,7 +23,7 @@ function App() {
         <IsUserRedirect
           user={user} 
           loggedInPath={ROUTES.BROWSE} 
-          exact path={ROUTES.SIGN_IN}>
+          exact path={ROUTES.SIGN_UP}>
                 <SignUp />
         </IsUserRedirect>
           

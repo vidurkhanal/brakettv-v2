@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
-import { FirebaseContext } from "../context/firebase";
+import React from "react";
+import { BrowserContainer } from "../containers/browse";
+import useContent from "../hooks/useContent";
+import { selectionFilter } from "../utils/selectionFilter";
 
 function Browse() {
-  const { firebase } = useContext(FirebaseContext);
-  const signOut = () => {
-    firebase.auth().signOut();
-  };
+  const { series } = useContent("series");
+  const { films } = useContent("films");
+  const slides = selectionFilter({ series, films });
   return (
     <>
-      <h1>HELLLO FROM BROWSE</h1>
-      <button onClick={signOut}>Sign Out.</button>
+      <BrowserContainer slides={slides} />
     </>
   );
 }

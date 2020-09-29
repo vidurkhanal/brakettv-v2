@@ -18,17 +18,18 @@ function SignUp() {
   const handleSignUp = (ev) => {
     ev.preventDefault();
     firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((response) => {
-        response.user.updateProfile({
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+      .then((result) =>
+        result.user
+          .updateProfile({
           displayName: name,
-          photoURl: Math.floor(Math.random() * 5) + 1,
-        });
-      })
-      .then(() => {
-        history.push(ROUTES.BROWSE);
-      })
+          photoURL: Math.floor(Math.random() * 5) + 1,
+        })
+        .then(() => {
+          history.push(ROUTES.BROWSE);
+        })
+    )
       .catch((error) => {
         setError(error.message);
         setPassword("");

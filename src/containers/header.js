@@ -7,8 +7,10 @@ export function HeaderContainer({ children }) {
   return (
     <Header>
       <Header.Frame>
+        <Header.Mask>
         <Header.Logo to={ROUTES.HOME} src={Logo} alt="Logo Braket TV" />
         <Header.ButtonLink to={ROUTES.SIGN_IN}>Sign In</Header.ButtonLink>
+        </Header.Mask>
       </Header.Frame>
       {children}
     </Header>
