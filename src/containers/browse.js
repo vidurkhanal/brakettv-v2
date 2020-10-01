@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { SelectProfileContainer } from './profiles'
+import Fuse from "fuse.js";
 import { FirebaseContext } from '../context/firebase'
 import * as ROUTES from '../constants/Routes'
 import Logo from '../logo.png'

@@ -64,8 +64,12 @@ export const Close = styled.button`
 `;
 
 export const Button = styled.button`
-  background-color: #e50914;
-  border-color: #ff0a16;
+  background: linear-gradient(
+    to right,
+    rgba(16, 41, 31, 0.8),
+    rgba(23, 23, 49, 0.8)
+  );
+  border-color: white;
   width: 115px;
   height: 45px;
   text-transform: uppercase;

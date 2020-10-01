@@ -21,7 +21,7 @@ Player.Video = function PlayerVideo({ src, ...restProps }) {
     ? createPortal(
         <Overlay onClick={() => setShowPlayer(false)} data-testid="player">
           <Inner>
-            <video id="brakettv-player" controls>
+            <video id="brakettv-player" controls autoPlay>
               <source src={src} type="video/mp4" />
             </video>
             <Close />
