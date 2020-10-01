@@ -22,7 +22,7 @@ export function BrowserContainer({ slides }) {
     useEffect(() => {
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 3000);
     }, [profile])
           // CHANGE THE VALUE TO 3000 WHILE DEPLOYING.
     const signOut = () => {
