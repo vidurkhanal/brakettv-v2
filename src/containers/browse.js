@@ -6,6 +6,8 @@ import Logo from '../logo.png'
 import Loading from '../components/loading'
 import Header from '../components/header'
 import Card from '../components/card'
+import Player from '../components/player'
+import {FooterContainer} from '../containers/footer'
 
 export function BrowserContainer({ slides }) {
     const [category,setCategory] = useState('films')
@@ -30,6 +32,10 @@ export function BrowserContainer({ slides }) {
     useEffect(()=>{
         setSlideRows(slides[category])
     },[slides,category])
+
+    const videoRandomizer = () => {
+      return Math.floor((Math.random()*3)+1)
+    }
 
     return profile ? (
       <>
@@ -99,10 +105,16 @@ export function BrowserContainer({ slides }) {
             ))}
         </Card.Entities>
         <Card.Feature category={category}>
+          <Player>
+              <Player.Button/>
+              <Player.Video src={`/videos/${videoRandomizer()}.mp4`}/>
+          </Player>
         </Card.Feature>
     </Card>
+    
 ))}
         </Card.Group>
+        <FooterContainer />
       </>
     ) : (
       <SelectProfileContainer user={user} setProfile={setProfile} />

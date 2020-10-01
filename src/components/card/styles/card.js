@@ -83,13 +83,13 @@ export const Meta = styled.div`
 `;
 
 export const Image = styled.img`
-  object-fit: contain;
+  object-fit: cover;
   border: 0;
   width: 100%;
+  height:   auto;
   min-width: 450px;
   max-width: 500px;
   cursor: pointer;
-  height: auto;
   padding: 0;
   margin: 0;
 
@@ -103,16 +103,26 @@ export const Item = styled.div`
   flex-direction: column;
   position: relative;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: all 0.2s;
 
   @media (max-width: 1100px) {
     margin-right: 10px !important;
+    &:hover {
+      transform: scale(1.06);
+      z-index: 99;
+      margin-bottom: -10px;
+  
+    }
   }
-
-  &:hover {
-    transform: scale(1.06);
-    z-index: 99;
+  @media (min-width:1101px){
+    &:hover {
+      transform: scale(1.06);
+      z-index: 99;
+      margin-top: -20px;
+  
+    }
   }
+  
 
   @media (min-width: 1200px) {
     margin-right: 30px;
@@ -151,6 +161,12 @@ export const FeatureText = styled.p`
   }
 `;
 
+export const FeatureBorder = styled.span`
+  border: 1px solid white;
+  padding: 10px;
+`;
+
+
 export const Feature = styled.div`
   display: flex;
   flex-direction: row;
@@ -161,7 +177,7 @@ export const Feature = styled.div`
   background-position-x: right;
   background-repeat: no-repeat;
   background-color: black;
-  z-index: 20;
+  // z-index: 20;
 
   @media (max-width: 1000px) {
     height: auto;
@@ -180,6 +196,7 @@ export const Feature = styled.div`
 
 export const FeatureTitle = styled(Title)`
   margin-left: 0;
+  font-size: 50px;
 `;
 
 export const FeatureClose = styled.button`
@@ -209,7 +226,8 @@ export const Content = styled.div`
 `;
 
 export const Maturity = styled.div`
-  background-color: ${({ rating }) => (rating >= 15 ? "red" : "green")};
+  background-color: ${({ rating }) =>
+    rating >= 15 ? "rgba(16, 41, 31, 0.8)" : "rgba(23, 23, 49, 0.8)"};
   border-radius: 15px;
   width: 20px;
   padding: 5px;
@@ -217,6 +235,6 @@ export const Maturity = styled.div`
   color: white;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  margin-right: 10px;
+  margin-left: 10px;
   font-size: 12px;
 `;
