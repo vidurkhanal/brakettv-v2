@@ -1,17 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { SelectProfileContainer } from './profiles'
 import { FirebaseContext } from '../context/firebase'
-import Loading from '../components/loading'
-import Header from '../components/header'
 import * as ROUTES from '../constants/Routes'
 import Logo from '../logo.png'
+import Loading from '../components/loading'
+import Header from '../components/header'
+import Card from '../components/card'
 
 export function BrowserContainer({ slides }) {
+    const [category,setCategory] = useState('films')
     const [searchTerm, setSearchTerm] = useState("");
     const [profile, setProfile] = useState(JSON.parse(sessionStorage.getItem('currentProfile')))
     const [loading, setLoading] = useState(true)
     const { firebase } = useContext(FirebaseContext)
     const user = firebase.auth().currentUser || {}
+    const [slideRows,setSlideRows] = useState([])
+
     useEffect(() => {
       setTimeout(() => {
         setLoading(false);
@@ -23,6 +27,10 @@ export function BrowserContainer({ slides }) {
         sessionStorage.removeItem('currentProfile')
     }
 
+    useEffect(()=>{
+        setSlideRows(slides[category])
+    },[slides,category])
+
     return profile ? (
       <>
         {loading ? <Loading src={profile.photoURL} /> : <Loading.ReleaseBody />}
@@ -31,8 +39,11 @@ export function BrowserContainer({ slides }) {
             <Header.Frame>
               <Header.Group>
                 <Header.Logo to={ROUTES.HOME} src={Logo} alt="Logo Braket TV" />
-                <Header.TextLink>Movies</Header.TextLink>
-                <Header.TextLink>Series</Header.TextLink>
+                <Header.TextLink active={category === 'films' ? 'true': 'false'}
+                onClick={()=> setCategory('films')}
+                >Movies</Header.TextLink>
+                <Header.TextLink active={category === 'series' ? 'true': 'false'}
+                onClick={()=> setCategory('series')}>Series</Header.TextLink>
               </Header.Group>
               <Header.Group>
                 <Header.Search
@@ -71,6 +82,27 @@ export function BrowserContainer({ slides }) {
            
           </Header.DarkMask>
         </Header>
+
+        <Card.Group>
+{slideRows.map(slideItem=> (
+    <Card key={`${category}=${slideItem.title.toLowerCase()}`}>
+        <Card.Title>{slideItem.title}</Card.Title>
+        <Card.Entities>
+            {slideItem.data.map(item=>(
+                <Card.Item key={item.docId} item={item}>
+                    <Card.Image src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`}/>
+                    <Card.Meta>
+                        <Card.SubTitle>{item.title}</Card.SubTitle>
+                        <Card.Text>{item.description}</Card.Text>
+                    </Card.Meta>
+                </Card.Item>
+            ))}
+        </Card.Entities>
+        <Card.Feature category={category}>
+        </Card.Feature>
+    </Card>
+))}
+        </Card.Group>
       </>
     ) : (
       <SelectProfileContainer user={user} setProfile={setProfile} />
