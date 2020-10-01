@@ -13,15 +13,103 @@ export const Background = styled.div`
   }
 `;
 
+export const TextLink = styled.p`
+  color: #fff;
+  text-decoration: none;
+  margin-right: 30px;
+  font-weight: ${({ active }) => (active === "true" ? "700" : "normal")};
+  cursor: pointer;
+
+  &:hover {
+    font-weight: bold;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+`;
+
+export const Picture = styled.button`
+  background: url(${({ src }) => src});
+  background-size: contain;
+  border: 0;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+`;
+
+export const Group = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const Dropdown = styled.div`
+  display: none;
+  position: absolute;
+  background-color: black;
+  padding: 10px;
+  width: 100px;
+  top: 55px;
+  right: 8px;
+
+  ${Group}:last-of-type ${TextLink} {
+    cursor: pointer;
+  }
+
+  ${Group} {
+    margin-bottom: 10px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    ${TextLink}, ${Picture} {
+      cursor: default;
+    }
+  }
+
+  button {
+    margin-right: 10px;
+  }
+
+  p {
+    font-size: 12px;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+`;
+
+export const Profile = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  position: relative;
+
+  button {
+    cursor: pointer;
+  }
+
+  &:hover > ${Dropdown} {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
 export const Mask = styled.div`
-display: flex;
-flex-direction: column;
-background: linear-gradient(
-    to right,
-    rgba(16, 41, 31, 0.8),
-    rgba(23, 23, 49, 0.8)
-  )
-`
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+      to right,
+      rgba(16, 41, 31, 0.8),
+      rgba(23, 23, 49, 0.8)
+    )
+    @media (max-width: 1100px) {
+    ${({ dontShowOnSmallViewPort }) =>
+      dontShowOnSmallViewPort && `background: none;`}
+  }
+`;
+
+
 
 export const DarkMask = styled.div`
 display: flex;
@@ -60,19 +148,7 @@ width: 50%;
 
 `
 
-export const Link = styled.p`
-  color: #fff;
-  text-decoration: none;
-  margin-right: 30px;
-  font-weight: ${({ active }) => (active === "true" ? "700" : "normal")};
-  cursor: pointer;
-  &:hover {
-    font-weight: bold;
-  }
-  &:last-of-type {
-    margin-right: 0;
-  }
-`;
+
 
 export const Logo = styled.img`
   object-fit: contain;
@@ -81,7 +157,7 @@ export const Logo = styled.img`
   margin-right: 40px;
   @media (min-width: 1449px) {
     padding-top: 30px;
-    width: 167px;
+    // width: 167px;
   }
 `;
 

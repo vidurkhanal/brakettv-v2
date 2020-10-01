@@ -12,19 +12,45 @@ export function BrowserContainer({ slides }) {
     const { firebase } = useContext(FirebaseContext)
     const user = firebase.auth().currentUser || {}
     useEffect(() => {
-        // setTimeout(() => {
-        setLoading(false)
-        // }, 3000);
-
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     }, [profile])
+          // CHANGE THE VALUE TO 3000 WHILE DEPLOYING.
+    const signOut = () => {
+        firebase.auth().signOut()
+        sessionStorage.removeItem('currentProfile')
+    }
 
     return profile ? (
         <>
             {loading ? <Loading src={profile.photoURL} /> : <Loading.ReleaseBody />}
-            <Header src="enolaholmes">
-                <Header.DarkMask>
+            <Header src="enolaholmes" dontShowOnSmallViewPort>
+                <Header.DarkMask dontShowOnSmallViewPort>
                     <Header.Frame>
+                        <Header.Group>
                         <Header.Logo to={ROUTES.HOME} src={Logo} alt="Logo Braket TV" />
+                        <Header.TextLink>Movies</Header.TextLink>
+                        <Header.TextLink>Series</Header.TextLink>
+                        </Header.Group>
+                        <Header.Group>
+                            <Header.Profile>
+                                <Header.Picture src = {user.photoURL}/>
+                                <Header.Dropdown>
+                                    <Header.Group>
+                                    <Header.Picture src = {user.photoURL}/>
+                                    <Header.TextLink>
+                                        {user.displayName}
+                                    </Header.TextLink>
+                                    </Header.Group>
+                                    <Header.Group>
+                                    <Header.TextLink onClick = {signOut}>
+                                        Log Out
+                                    </Header.TextLink>
+                                    </Header.Group>
+                                </Header.Dropdown>
+                            </Header.Profile>
+                        </Header.Group>
                     </Header.Frame>
                     <Header.Feature>
                         <Header.FeatureCallOut>Watch Enola Holmes Now.</Header.FeatureCallOut>
